@@ -1,42 +1,37 @@
-import { useState } from "react";
-
 function Item({ item }) {
-  const [show, setShow] = useState(false);
-
   return (
     <div style={{
       background: "#2c2c3e",
+      padding: "15px",
       borderRadius: "10px",
-      padding: "10px",
       textAlign: "center"
     }}>
+      
+      {/* Image */}
       <img
-        src={item.image?.medium}
+        src={item.image?.medium || "https://via.placeholder.com/210x295"}
         alt={item.name}
         style={{ width: "100%", borderRadius: "10px" }}
       />
 
+      {/* Title */}
       <h3>{item.name}</h3>
 
-      <button
-        onClick={() => setShow(!show)}
-        style={{
-          padding: "6px",
-          background: "#ff4757",
-          color: "white",
-          border: "none",
-          borderRadius: "5px"
-        }}
-      >
-        {show ? "Hide" : "Show"} Info
+      {/* Rating */}
+      <p>⭐ {item.rating?.average || "N/A"}</p>
+
+      {/* Button */}
+      <button style={{
+        background: "#ff6b6b",
+        border: "none",
+        padding: "8px 12px",
+        borderRadius: "5px",
+        color: "white",
+        cursor: "pointer"
+      }}>
+        View Details
       </button>
 
-      {show && (
-        <div
-          style={{ marginTop: "10px", fontSize: "14px" }}
-          dangerouslySetInnerHTML={{ __html: item.summary }}
-        />
-      )}
     </div>
   );
 }
